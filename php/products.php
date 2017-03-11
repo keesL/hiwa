@@ -34,8 +34,14 @@ if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUES
 
 if (array_key_exists("a", $_REQUEST)) {
 	if ($_REQUEST['a'] == 'Add Product') {
-		copy($_FILES['prodimg']['tmp_name'],
-			$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
+		if ($_FILES['prodimg']['tmp_name'] != "") {
+			$imgname=$_FILES['prodimg']['name'];
+			copy($_FILES['prodimg']['tmp_name'],
+				$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
+		} else {
+			$imgname='';
+		}
+			
 		$conn = pg_connect('user='.$CONFIG['username'].
 			' dbname='.$CONFIG['database']);
 		$res = pg_query($conn, "INSERT INTO products
@@ -45,20 +51,25 @@ if (array_key_exists("a", $_REQUEST)) {
 			$_REQUEST['prodname']."', ".
 			"'".$_REQUEST['proddesc']."', ".
 			$_REQUEST['msrp'].", ".
-			"'".$_FILES['prodimg']['name']."');");
+			"'".$imgname."');");
 		if ($res === False) {
 			$msg="Unable to create product.";
 		}
 	} elseif ($_REQUEST['a'] == 'Update product') {
-		copy($_FILES['prodimg']['tmp_name'],
-			$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
+		if ($_FILES['prodimg']['tmp_name'] != "") {
+			$imgname=$_FILES['prodimg']['name'];
+			copy($_FILES['prodimg']['tmp_name'],
+				$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
+		} else {
+			$imgname='';
+		}
 		$conn = pg_connect('user='.$CONFIG['username'].
 			' dbname='.$CONFIG['database']);
 		$res = pg_query($conn, "update products ".
 			"set productname='".$_REQUEST['prodname']."',".
 			"    productdescr='".$_REQUEST['proddesc']."',".
 			"    msrp=".$_REQUEST['msrp'].",".
-			"    imageurl='".$_FILES['prodimg']['name']."'".
+			"    imageurl='".$imgname."'".
 			"where productid='".$_REQUEST['prodid']."'");
 		$res = pg_query($conn, "commit;");
 		if ($res === False) {
@@ -104,6 +115,12 @@ while (($row = pg_fetch_assoc($res)) !== False) {
 	echo "<td>".$row['productname']."</td>";
 	echo "<td>".$row['productdescr']."</td>";
 	echo "<td>".$row['msrp']."</td>";
+	echo "<td>";
+	if ($row['imageurl'] != '') {
+		echo '<img src="'.$CONFIG['images'].'/'.$row['imageurl'].'"'.
+		' width="75">';
+	}
+	echo "</td>";
 	echo "<td><a href=\"".$_SERVER['SCRIPT_NAME'].
 		"?action=delete&prodid=".$row['productid']."\">delete</a>
 		<a href=\"".$_SERVER['SCRIPT_NAME'].
