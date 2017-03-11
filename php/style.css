@@ -1,0 +1,47 @@
+/* Header */
+.header {
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-bottom: 50px;
+}
+
+.logo {
+	float: left;
+        width: 20%;
+}
+
+.branding {
+	text-align: left;
+	font-size: 200%;
+	width: 80%;
+}
+
+
+/* Login page */
+.login {
+	font-family: sans-serif;
+	font-size: large;
+	border: 2px solid black;
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+	display: table;
+}
+
+.loginfield {
+	display: table-row;
+	width: 100%;
+	clear: both;
+}
+
+.loginlabel {
+	float: left;
+	display: table-column;
+	width: 25%;
+}
+
+.logininput {
+	float: right;
+	display: table-column;
+	width: auto;
+}
