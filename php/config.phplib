@@ -3,4 +3,5 @@
 	$CONFIG['database'] = 'hiwa';
 	$CONFIG['logo'] = 'hiwa.png';
 	$CONFIG['brandname'] = 'HIWA, Inc.';
+	$CONFIG['uploads'] = '/var/www/html/hiwa/uploads';
 ?>
