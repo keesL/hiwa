@@ -1,6 +1,6 @@
 INSTDIR=/var/www/html/hiwa
 
-.phony: installphp installcss installimg install
+.phony: installphp install
 
 none:
 	echo "Not doing anything unless told what."
@@ -8,11 +8,5 @@ none:
 installphp: 
 	cp *.php *.phplib ${INSTDIR}
 
-installcss:
-	cp *.css  ${INSTDIR}
-
-installimg:
-	cp *.png ${INSTDIR}
-	
-install: installphp installcss installimg
+install: installphp 
 	

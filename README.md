@@ -6,15 +6,16 @@ This horribly insecure web application is designed to illustrate
 a number of common web application vulnerabilities. Specifically,
 among its features are:
 
-1. SQL injection for authentication bypass
-2. XSS 
-3. Insecure object references allow access control bypass
-4. Insufficient sanitation of input parameters allows privilege escalation
-5. Inappropriate use of encryption stored credentials as plaintext passwords
-6. Insecure file upload capability leads to arbitrary code execution
-7. Lack of transport-layer encryption allows credential sniffing
-8. Unprotected configuration files in browsable directory
-9. Authentication state maintained in client-side cookies
+ 1. SQL injection for authentication bypass
+ 2. XSS 
+ 3. Insecure object references allow access control bypass
+ 4. Insufficient sanitation of input parameters allows privilege escalation
+ 5. Inappropriate use of encryption stored credentials as plaintext passwords
+ 6. Insecure file upload capability leads to arbitrary code execution
+ 7. Lack of transport-layer encryption allows credential sniffing
+ 8. Unprotected configuration files in browsable directory
+ 9. Authentication state maintained in client-side cookies
+10. Insecure defaults
 
 ## Installation
 
