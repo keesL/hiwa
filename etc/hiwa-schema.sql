@@ -6,7 +6,7 @@ CREATE TABLE users (
 	password  varchar(40),
 	role      varchar(10),
 	primary key (login),
-	check (role in ('admin', 'user'))
+	check (role in ('admin', 'manager', 'user'))
 );
 
 -- the product catalog

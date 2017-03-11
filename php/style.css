@@ -16,6 +16,19 @@
 	width: 80%;
 }
 
+.title {
+	text-align: center;
+	font-size: 125%;
+	font-family: sans-serif;
+	width: 100%;
+}
+
+.subtitle {
+	width: 100%;
+	font-style: italic;
+	text-align: center;
+}
+
 
 /* Login page */
 .login {
@@ -44,4 +57,12 @@
 	float: right;
 	display: table-column;
 	width: auto;
+}
+
+/* Menu */
+.menu {
+	width: 50%;
+	margin: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
