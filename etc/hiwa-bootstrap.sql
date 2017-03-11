@@ -24,12 +24,17 @@ VALUES
 ('cust002', 'Geeks-R-us', 0, '987654321');
 
 INSERT INTO orders
-(orderid, customerid, productid, numprods, prodprice)
+(orderid, customerid, status)
 VALUES
-('201700001', 'cust002', 'mug001', 10, 11.95);
+('201700001', 'cust002', 'prepared');
 
-INSERT INTO orders
-(orderid, customerid, productid, numprods, prodprice)
+INSERT INTO lineitems
+(orderid, productid, numprods, prodprice)
 VALUES
-('201700001', 'cust002', 'shirt001', 10, 24.95);
+('201700001', 'mug001', 5, 12.50);
+
+INSERT INTO lineitems
+(orderid, productid, numprods, prodprice)
+VALUES
+('201700001', 'shirt001', 10, 24.95);
 commit;

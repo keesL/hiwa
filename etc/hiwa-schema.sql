@@ -31,11 +31,18 @@ CREATE TABLE customers (
 CREATE TABLE orders (
 	orderid		varchar(10),
 	customerid	varchar(10),
+	status		varchar(10),
+	check (status in ('new', 'prepared', 'shipped', 'billed', 'paid')),
+	foreign key (customerid) references customers,
+	primary key (orderid)
+);
+
+CREATE TABLE lineitems (
+	orderid		varchar(10),
 	productid	varchar(10),
 	numprods	numeric(3,0),
 	prodprice	numeric(5,2),
-	primary key (orderid, productid),
-	foreign key (customerid) references customers,
-	foreign key (productid) references products
+	foreign key (productid) references products,
+	foreign key (orderid) references orders
 );
 commit;
