@@ -76,7 +76,7 @@ while (($row = pg_fetch_assoc($res)) !== False) {
 	echo "<tr class=\"$class\">";
 	echo "<td>".$row['login']."</td>";
 	echo "<td>".$row['role']."</td>";
-	echo "<td><a href=\"".$_SERVER['REQUEST_URI'].
+	echo "<td><a href=\"".$_SERVER['SCRIPT_NAME'].
 		"?action=delete&user=".$row['login']."\">delete</a></td>";
 	echo "</tr>";
 }
