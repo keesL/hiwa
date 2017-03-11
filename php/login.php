@@ -15,7 +15,7 @@ if (array_key_exists('login', $_REQUEST) &&
 		exit();
 	}
 	setcookie("hiwa-user", $_REQUEST['login']);
-	setcookie("hiwa-role", $row[0]['role']);
+	setcookie("hiwa-role", $row['role']);
 	Header("Location: menu.php");
 	exit();
 }
