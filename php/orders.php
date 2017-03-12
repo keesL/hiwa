@@ -61,8 +61,8 @@ while (($row = pg_fetch_assoc($res)) !== False) {
 	echo "<td>".$row['orderid']."</td>";
 	echo "<td>".$row['customername']."</td>";
 	echo "<td>".$row['status']."</td>";
-	echo "<td><a href=\"".$_SERVER['SCRIPT_NAME'].
-		"?action=details&orderid=".$row['orderid']."\">details</a></td>";
+	echo "<td><a href=\"details.php?orderid=".$row['orderid'].
+		"\">details</a></td>";
 	echo "</tr>";
 }
 pg_free_result($res);

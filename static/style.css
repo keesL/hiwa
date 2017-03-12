@@ -2,7 +2,7 @@
 .header {
 	width: 100%;
 	border-bottom: 1px solid black;
-	margin-bottom: 50px;
+	margin-bottom: 70px;
 }
 
 .logo {
@@ -96,4 +96,25 @@
 
 .even {
 	background-color: #CCCCCC;
+}
+
+/* Product items */
+.lineitems {
+	display: table;
+	border: 1px solid black;
+	width: 80%;
+	margins: auto;
+}
+
+.item {
+	border: 1px solid black;
+}
+
+.num {
+	text-align: right;
+}
+
+.itemadd {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
