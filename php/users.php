@@ -113,5 +113,7 @@ pg_close($conn);
 <p>
 <input type="submit" name="Create user">
 </form>
+<p>
+Flag: <i>dc5b23e4c3e2d1b055ffbe209affbee0</i>
 </body>
 </html>

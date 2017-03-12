@@ -1,6 +1,10 @@
 begin transaction;
 INSERT INTO users 
 (login, password, role)
+VALUES ('flag', '57d9d59e04584a980337376235d6d2b4', 'user');
+
+INSERT INTO users 
+(login, password, role)
 VALUES ('admin', 'admin', 'admin');
 
 INSERT INTO products
@@ -22,6 +26,11 @@ INSERT INTO customers
 (customerid, customername, creditlimit, taxid)
 VALUES
 ('cust002', 'Geeks-R-us', 0, '987654321');
+
+INSERT INTO customers
+(customerid, customername, creditlimit, taxid)
+VALUES
+('cust003', 'Flag and stuff', 0, '5d01d800df41f6b');
 
 INSERT INTO orders
 (orderid, customerid, status)

@@ -95,7 +95,8 @@ $res = pg_query_params($conn, "SELECT *
 	<th>Product code</th>
 	<th>Product name</th>
 	<th>Amount</th>
-	<th>Extended price each</th>
+	<th>MRSP</th>
+	<th>Extended</th>
 	<th>Total price</th>
 	<th>Actions</th>
 </tr>
@@ -112,6 +113,7 @@ while (($row = pg_fetch_assoc($res)) !== false) {
 	echo '<tr><td class="item">'.$row['productid'].'</td>
 	<td class="item">'.$row['productname'].'</td>
 	<td class="item num">'.$row['numprods'].'</td>
+	<td class="item num">'.sprintf("%.2f", $row['msrp']).'</td>
 	<td class="item num">'.sprintf("%.2f", $row['prodprice']).'</td>
 	<td class="item num">'.sprintf("%.2f", $subtotal).'</td>
 	<td class="item"><a href="'.$_SERVER['SCRIPT_NAME'].'?action=remove&prodcode='.

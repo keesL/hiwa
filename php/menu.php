@@ -33,6 +33,8 @@ $role=$_COOKIE['hiwa-role'];
 		echo '<p/>';
 	}?>
 	<a href="logout.php">Logout</a>
+	<p/>
+	Flag: <i>4cb2d2569de028c5fab3301a7ef5a679</i>
 </div>
 	
 </body>
