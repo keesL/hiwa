@@ -10,7 +10,7 @@ if (!array_key_exists('hiwa-user', $_COOKIE) ||
 
 $role=$_COOKIE['hiwa-role'];
 
-if (array_key_exists($_REQUEST, 'a')) {
+if (array_key_exists('a', $_REQUEST)) {
 $conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
 $res = pg_query_params($conn, "
 	INSERT INTO orders

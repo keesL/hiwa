@@ -7,6 +7,10 @@ if (!array_key_exists('hiwa-user', $_COOKIE) ||
 	Header("Location: login.php");
 	exit();
 }
+if (!array_key_exists('orderid', $_REQUEST)) {
+	Header("Location: login.php");
+	exit();
+}
 
 $role=$_COOKIE['hiwa-role'];
 if (array_key_exists('action', $_REQUEST)) {
@@ -72,8 +76,8 @@ $res = pg_query_params($conn, "SELECT *
 <table>
 <tr>
 	<td>Order Number</td>
-	<td><?php echo '<a href="orders.php?orderid="'.
-		$_REQUEST['orderid'].'>'.$_REQUEST['orderid'].'</a>';
+	<td><?php echo '<a href="orders.php?orderid='.
+		$_REQUEST['orderid'].'">'.$_REQUEST['orderid'].'</a>';
 		?></td>
 </tr>
 <tr>
