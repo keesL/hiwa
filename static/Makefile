@@ -1,4 +1,4 @@
-INSTDIR=/var/www/html/hiwa
+INSTDIR=/var/www/hiwa
 
 .phony: installcss installimg install
 
