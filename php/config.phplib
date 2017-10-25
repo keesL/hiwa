@@ -1,8 +1,9 @@
 <?php
-	$CONFIG['username'] = 'hiwa';
+	// guest/guest
+	$CONFIG['username'] = 'www-data';
 	$CONFIG['database'] = 'hiwa';
 	$CONFIG['logo'] = 'hiwa.png';
 	$CONFIG['brandname'] = 'HIWA, Inc.';
-	$CONFIG['uploads'] = '/var/www/html/hiwa/uploads';
+	$CONFIG['uploads'] = '/var/www/hiwa/uploads';
 	$CONFIG['images'] = 'uploads';
 ?>

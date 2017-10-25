@@ -1,15 +1,20 @@
-INSTDIR=/var/www/hiwa
+WEBROOT=/var/www/hiwa
+IMGDIR=${WEBROOT}/uploads
+IMGOWNER=www-data
+IMGGRP=www-data
+IMGPERM=664
 
+INSTALL=/usr/bin/install
 .phony: installcss installimg install
 
 none:
 	echo "Not doing anything unless told what."
 
 installcss:
-	cp *.css  ${INSTDIR}
+	cp *.css  ${WEBROOT}
 
 installimg:
-	cp *.png ${INSTDIR}
+	$(INSTALL) -o $(IMGOWNER) -g $(IMGGRP) -m $(IMGPERM) hiwa.png $(IMGDIR)
 	
 install: installcss installimg
 	
