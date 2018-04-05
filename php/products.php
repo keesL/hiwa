@@ -17,14 +17,14 @@ if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUES
 			' dbname='.$CONFIG['database']);
 		$res = pg_query($conn, "DELETE FROM products WHERE 
 			productid='".$_REQUEST['prodid']."'");
-		if ($res === False) {
+		if ($res === FALSE) {
 			$msg = "Unable to remove customer";
 		}
 	} else if ($_REQUEST['action'] == 'edit') {
 		$nextAction = "update";
 		$conn = pg_connect('user='.$CONFIG['username'].
 			' dbname='.$CONFIG['database']);
-		$res = pg_query("select * from products where productid='".
+		$res = pg_query("select productid,productname,productdescr,msrp,imageurl from products where productid='".
 			$_REQUEST['prodid']."'");
 		$cache = pg_fetch_assoc($res);
 		pg_free_result($res);
@@ -36,6 +36,7 @@ if (array_key_exists("a", $_REQUEST)) {
 	if ($_REQUEST['a'] == 'Add Product') {
 		if ($_FILES['prodimg']['tmp_name'] != "") {
 			$imgname=$_FILES['prodimg']['name'];
+			if (mime_content_type($_FILE['prodimg']['tmp_name']) != 'text/x-php')
 			copy($_FILES['prodimg']['tmp_name'],
 				$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
 		} else {
@@ -52,7 +53,7 @@ if (array_key_exists("a", $_REQUEST)) {
 			"'".$_REQUEST['proddesc']."', ".
 			$_REQUEST['msrp'].", ".
 			"'".$imgname."');");
-		if ($res === False) {
+		if ($res === FALSE) {
 			$msg="Unable to create product.";
 		}
 	} elseif ($_REQUEST['a'] == 'Update product') {
@@ -72,7 +73,7 @@ if (array_key_exists("a", $_REQUEST)) {
 			"    imageurl='".$imgname."'".
 			"where productid='".$_REQUEST['prodid']."'");
 		$res = pg_query($conn, "commit;");
-		if ($res === False) {
+		if ($res === FALSE) {
 			$msg="Unable to update product.";
 		}
 	}
@@ -95,7 +96,15 @@ if (array_key_exists("a", $_REQUEST)) {
 
 <?php
 $conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
-$res = pg_query("SELECT * FROM products");
+if (array_key_exists("filter", $_REQUEST)) {
+	$filter = "WHERE $_REQUEST[filter]";
+} else {
+	$filter = '';
+}
+$query = "SELECT * FROM products $filter";
+echo "<!-- set request variable filter to manipulate table filter -->\n";
+echo "<!-- $query -->";
+$res = pg_query($query);
 ?>
 <table class="users">
 <tr>
@@ -107,7 +116,7 @@ $res = pg_query("SELECT * FROM products");
 </tr>
 <?php
 $count=1;
-while (($row = pg_fetch_assoc($res)) !== False) {
+while (($row = pg_fetch_assoc($res)) != FALSE) {
 	if ($count % 2 == 0) $class="even"; else $class="odd";
 	$count++;
 	echo "<tr class=\"$class\">";
