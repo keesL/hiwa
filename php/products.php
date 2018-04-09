@@ -36,7 +36,7 @@ if (array_key_exists("a", $_REQUEST)) {
 	if ($_REQUEST['a'] == 'Add Product') {
 		if ($_FILES['prodimg']['tmp_name'] != "") {
 			$imgname=$_FILES['prodimg']['name'];
-			if (mime_content_type($_FILE['prodimg']['tmp_name']) != 'text/x-php')
+			if (mime_content_type($_FILES['prodimg']['tmp_name']) != 'text/x-php')
 			copy($_FILES['prodimg']['tmp_name'],
 				$CONFIG['uploads'].'/'.$_FILES['prodimg']['name']);
 		} else {
