@@ -12,11 +12,9 @@ $role=$_COOKIE['hiwa-role'];
 
 if (array_key_exists('a', $_REQUEST)) {
 $conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
-$res = pg_query_params($conn, "
-	INSERT INTO orders
+$res = pg_query_params($conn, "INSERT INTO orders
 	(orderid, customerid, status)
-	VALUES
-	('$1', '$2', '$3')", array( 
+	VALUES ($1, $2, $3)", array( 
 		$_REQUEST['orderid'], 
 		$_REQUEST['custid'],
 		$_REQUEST['status'] ) );
@@ -75,7 +73,7 @@ pg_free_result($res);
 <table>
 <tr>
 	<td>Order ID:</td>
-	<td><input type="text" name="custid" size="25"></td>
+	<td><input type="text" name="orderid" size="25"></td>
 </tr>
 <tr>
 	<td>Customer Name:</td>
