@@ -9,17 +9,20 @@ if (!array_key_exists('hiwa-user', $_COOKIE) ||
 }
 
 $role=$_COOKIE['hiwa-role'];
+if ($role != 'admin') Header("Location: menu.php");
 
 if (array_key_exists('action', $_REQUEST) &&
     array_key_exists('user', $_REQUEST) &&
     $_REQUEST['action'] == 'delete') {
-	$conn = pg_connect('user='.$CONFIG['username'].
-		' dbname='.$CONFIG['database']);
-	$res = pg_query($conn, "DELETE FROM users WHERE login='".
-		$_REQUEST['user']."'");
-	if ($res === False) {
-		$msg = "Unable to remove user";
-	}
+	if ($_REQUEST['user'] != 'guest') {
+		$conn = pg_connect('user='.$CONFIG['username'].
+			' dbname='.$CONFIG['database']);
+		$res = pg_query($conn, "DELETE FROM users WHERE login='".
+			$_REQUEST['user']."'");
+		if ($res === False) {
+			$msg = "Unable to remove user";
+		} 
+	} else $msg = "Do not remove guest; it would break the game.";
 }
 
 else if (array_key_exists('username', $_REQUEST) &&
@@ -114,6 +117,7 @@ pg_close($conn);
 <input type="submit" name="Create user">
 </form>
 <p>
-Flag: <i>dc5b23e4c3e2d1b055ffbe209affbee0</i>
+Flag: <i>flag{ffbe209affbe}</i>
+</body>
 </body>
 </html>
