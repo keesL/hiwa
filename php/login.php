@@ -48,6 +48,7 @@ if (array_key_exists('login', $_REQUEST) &&
 </div>
 <p/><input type="submit" name="Login"/>
 </form>
+<p><a href="reset.php">Forgot password?</a></p>
 <p/>
 Flag: <i>423320a19a2256ba8c8dac04f3bd329f</i>
 </div><!-- login -->
