@@ -16,8 +16,7 @@ $role=$_COOKIE['hiwa-role'];
 if (array_key_exists('action', $_REQUEST)) {
 	switch ($_REQUEST['action']) {
 		case 'Add item':
-			$conn = pg_connect("user=".$CONFIG['username'].
-				" dbname=".$CONFIG['database']);
+			$conn = pg_connect($CONFIG['connstr']);
 			$res = pg_query_params($conn, "INSERT INTO lineitems
 			(orderid, productid, numprods, prodprice)
 			VALUES
@@ -31,8 +30,7 @@ if (array_key_exists('action', $_REQUEST)) {
 			break;
 		
 		case 'remove':
-			$conn = pg_connect("user=".$CONFIG['username'].
-				" dbname=".$CONFIG['database']);
+			$conn = pg_connect($CONFIG['connstr']);
 			$res = pg_query_params($conn, "DELETE FROM lineitems
 				WHERE orderid=$1
 			 	AND productid=$2", array(
@@ -60,7 +58,7 @@ if (array_key_exists('action', $_REQUEST)) {
 </div>
 
 <?php
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
+$conn = pg_connect($CONFIG['connstr']);
 $res = pg_query_params($conn, "SELECT * 
 	FROM orders, customers
 	WHERE orders.customerid = customers.customerid

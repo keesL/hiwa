@@ -1,3 +1,6 @@
+set -e
+
+psql -v ON_ERROR_STOP=1 --username hiwa --dbname hiwa <<-EOSQL
 begin transaction;
 INSERT INTO users 
 (login, password, role)
@@ -47,3 +50,4 @@ INSERT INTO lineitems
 VALUES
 ('201700001', 'shirt001', 10, 24.95);
 commit;
+EOSQL

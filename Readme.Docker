@@ -1,0 +1,1 @@
+This is a docker-compose of postgresql and the app itself built on the php-apache container

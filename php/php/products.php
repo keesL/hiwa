@@ -13,8 +13,7 @@ $role=$_COOKIE['hiwa-role'];
 $nextAction = "blank";
 if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUEST)) {
 	if ($_REQUEST['action'] == 'delete') {
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query($conn, "DELETE FROM products WHERE 
 			productid='".$_REQUEST['prodid']."'");
 		if ($res === FALSE) {
@@ -22,8 +21,7 @@ if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUES
 		}
 	} else if ($_REQUEST['action'] == 'edit') {
 		$nextAction = "update";
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query("select productid,productname,productdescr,msrp,imageurl from products where productid='".
 			$_REQUEST['prodid']."'");
 		$cache = pg_fetch_assoc($res);
@@ -43,8 +41,7 @@ if (array_key_exists("a", $_REQUEST)) {
 			$imgname='';
 		}
 			
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query($conn, "INSERT INTO products
 			(productid, productname, productdescr, msrp, imageurl)
 			VALUES
@@ -64,8 +61,7 @@ if (array_key_exists("a", $_REQUEST)) {
 		} else {
 			$imgname='';
 		}
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query($conn, "update products ".
 			"set productname='".$_REQUEST['prodname']."',".
 			"    productdescr='".$_REQUEST['proddesc']."',".
@@ -95,7 +91,7 @@ if (array_key_exists("a", $_REQUEST)) {
 </div>
 
 <?php
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
+$conn = pg_connect($CONFIG['connstr']);
 if (array_key_exists("filter", $_REQUEST)) {
 	$filter = "WHERE $_REQUEST[filter]";
 } else {

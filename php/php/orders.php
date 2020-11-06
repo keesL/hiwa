@@ -11,15 +11,15 @@ if (!array_key_exists('hiwa-user', $_COOKIE) ||
 $role=$_COOKIE['hiwa-role'];
 
 if (array_key_exists('a', $_REQUEST)) {
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
-$res = pg_query_params($conn, "INSERT INTO orders
-	(orderid, customerid, status)
-	VALUES ($1, $2, $3)", array( 
-		$_REQUEST['orderid'], 
-		$_REQUEST['custid'],
-		$_REQUEST['status'] ) );
-pg_free_result($res);
-pg_close($conn);	
+	$conn = pg_connect($CONFIG['connstr']);
+	$res = pg_query_params($conn, "INSERT INTO orders
+		(orderid, customerid, status)
+		VALUES ($1, $2, $3)", array( 
+			$_REQUEST['orderid'], 
+			$_REQUEST['custid'],
+			$_REQUEST['status'] ) );
+	pg_free_result($res);
+	pg_close($conn);	
 }
 ?>
 
@@ -38,7 +38,7 @@ pg_close($conn);
 </div>
 
 <?php
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
+$conn = pg_connect($CONFIG['connstr']);
 $res = pg_query("SELECT * FROM orders, customers
 	WHERE orders.customerid = customers.customerid
 	ORDER BY orderid DESC");

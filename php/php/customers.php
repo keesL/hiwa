@@ -13,8 +13,7 @@ $role=$_COOKIE['hiwa-role'];
 if (array_key_exists('action', $_REQUEST) &&
     array_key_exists('custid', $_REQUEST) &&
     $_REQUEST['action'] == 'delete') {
-	$conn = pg_connect('user='.$CONFIG['username'].
-		' dbname='.$CONFIG['database']);
+	$conn = pg_connect($CONFIG['connstr']);
 	$res = pg_query($conn, "DELETE FROM customers WHERE 
 		customerid='".$_REQUEST['custid']."'");
 	if ($res === False) {
@@ -27,8 +26,7 @@ else if (array_key_exists('custid', $_REQUEST) &&
     array_key_exists('limit', $_REQUEST) &&
     array_key_exists('taxid', $_REQUEST)) {
 
-	$conn = pg_connect('user='.$CONFIG['username'].
-		' dbname='.$CONFIG['database']);
+	$conn = pg_connect($CONFIG['connstr']);
 	$res = pg_query($conn, "INSERT INTO customers
 		(customerid, customername, creditlimit, taxid)
 		VALUES
@@ -56,7 +54,7 @@ else if (array_key_exists('custid', $_REQUEST) &&
 </div>
 
 <?php
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
+$conn = pg_connect($CONFIG['connstr']);
 $res = pg_query("SELECT * FROM customers");
 ?>
 <table class="users">

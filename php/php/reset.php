@@ -22,8 +22,7 @@ if (array_key_exists("username", $_POST)) {
 	}
 
 	$query = "select role from users where login='$_POST[username]'";
-	$conn = pg_connect('user='.$CONFIG['username'].
-		' dbname='.$CONFIG['database']);
+	$conn = pg_connect($CONFIG['connstr']);
 	$res = pg_query($conn, $query);
 	if (pg_num_rows($res) == 1) {
 		print('<P>By continuing this process, you will reset the password of <span style="font-weight:bold">'.

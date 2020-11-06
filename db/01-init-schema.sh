@@ -1,3 +1,7 @@
+#!/bin/bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username hiwa --dbname hiwa <<-EOSQL
 begin transaction;
 -- the users table
 -- contains details for people allowed to use the web application
@@ -46,3 +50,4 @@ CREATE TABLE lineitems (
 	foreign key (orderid) references orders
 );
 commit;
+EOSQL

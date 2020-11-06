@@ -1,8 +1,7 @@
 <?php
 	// guest/guest
 	// flag: flag{2ec099f2d602cc4968c5267970be1326}
-	$CONFIG['username'] = 'www-data';
-	$CONFIG['database'] = 'hiwa';
+	$CONFIG['connstr'] = 'host=postgres user=hiwa password=hiwa dbname=hiwa';
 	$CONFIG['logo'] = 'hiwa.png';
 	$CONFIG['brandname'] = 'HIWA, Inc.';
 	$CONFIG['uploads'] = '/var/www/hiwa/uploads';

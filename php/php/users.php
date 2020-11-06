@@ -15,8 +15,7 @@ if (array_key_exists('action', $_REQUEST) &&
     array_key_exists('user', $_REQUEST) &&
     $_REQUEST['action'] == 'delete') {
 	if ($_REQUEST['user'] != 'guest') {
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query($conn, "DELETE FROM users WHERE login='".
 			$_REQUEST['user']."'");
 		if ($res === False) {
@@ -34,8 +33,7 @@ else if (array_key_exists('username', $_REQUEST) &&
 	if ($_REQUEST['password1'] != $_REQUEST['password2']) {
 		$msg = "Passwords do not match!";
 	} else {
-		$conn = pg_connect('user='.$CONFIG['username'].
-			' dbname='.$CONFIG['database']);
+		$conn = pg_connect($CONFIG['connstr']);
 		$res = pg_query($conn, "INSERT INTO USERS
 			(login, password, role) VALUES
 			('".$_REQUEST['username']."', '".
@@ -62,7 +60,7 @@ else if (array_key_exists('username', $_REQUEST) &&
 </div>
 
 <?php
-$conn = pg_connect("user=".$CONFIG['username']." dbname=".$CONFIG['database']);
+$conn = pg_connect($CONFIG['connstr']);
 $res = pg_query("SELECT * FROM users");
 ?>
 <table class="users">

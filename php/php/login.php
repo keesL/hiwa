@@ -2,8 +2,7 @@
 if (array_key_exists('login', $_REQUEST) &&
     array_key_exists('password', $_REQUEST)) {
  	require 'config.phplib';
-	$conn = pg_connect("user=".$CONFIG['username'].
-	    " dbname=".$CONFIG['database']);
+	$conn = pg_connect($CONFIG['connstr']);
 	$result = pg_query("SELECT * from users
 	    WHERE login='".$_REQUEST['login']."'
 	    AND password='".$_REQUEST['password']."'");
