@@ -6,5 +6,7 @@
 	$CONFIG['brandname'] = 'HIWA, Inc.';
 	$CONFIG['uploads'] = '/var/www/hiwa/uploads';
 	$CONFIG['images'] = 'uploads';
+
+	$flags['1'] = '423320a19a2256ba8c8dac04f3bd329f';
 	if (!isset( $role)) $role='none';
 ?>

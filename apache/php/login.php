@@ -49,7 +49,9 @@ if (array_key_exists('login', $_REQUEST) &&
 </form>
 <p><a href="reset.php">Forgot password?</a></p>
 <p/>
-Flag: <i>423320a19a2256ba8c8dac04f3bd329f</i>
+<div style="text-color:white">
+Flag: <i><?php print($flag[1]);?></i>
+</div>
 </div><!-- login -->
 
 </body>

@@ -1,26 +1,14 @@
 version: "3"
 
 services:
-  nginx: 
+  apache: 
     build:
-      context: nginx
+      context: apache
       dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
-      - php
       - postgres
-    volumes:
-      - data-volume:/var/www/hiwa
-
-  php:
-    build:
-      context: php 
-      dockerfile: Dockerfile
-    depends_on: 
-      - postgres
-    volumes:
-      - data-volume:/var/www/hiwa
  
   postgres:
     build:
@@ -28,6 +16,3 @@ services:
       dockerfile: Dockerfile
     environment:
       - POSTGRES_PASSWORD=secret
-
-volumes:
-  data-volume:
